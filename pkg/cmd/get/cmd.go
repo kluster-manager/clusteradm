@@ -7,6 +7,7 @@ import (
 	"open-cluster-management.io/clusteradm/pkg/cmd/get/addon"
 	"open-cluster-management.io/clusteradm/pkg/cmd/get/cluster"
 	"open-cluster-management.io/clusteradm/pkg/cmd/get/clusterset"
+	"open-cluster-management.io/clusteradm/pkg/cmd/get/hubconfig"
 	"open-cluster-management.io/clusteradm/pkg/cmd/get/hubinfo"
 	"open-cluster-management.io/clusteradm/pkg/cmd/get/klusterletinfo"
 	"open-cluster-management.io/clusteradm/pkg/cmd/get/placement"
@@ -26,6 +27,7 @@ func NewCmd(clusteradmFlags *genericclioptionsclusteradm.ClusteradmFlags, stream
 	cmd.AddCommand(addon.NewCmd(clusteradmFlags, streams))
 	cmd.AddCommand(cluster.NewCmd(clusteradmFlags, streams))
 	cmd.AddCommand(clusterset.NewCmd(clusteradmFlags, streams))
+	cmd.AddCommand(hubconfig.NewCmd(clusteradmFlags, streams))
 	cmd.AddCommand(hubinfo.NewCmd(clusteradmFlags, streams))
 	cmd.AddCommand(klusterletinfo.NewCmd(clusteradmFlags, streams))
 	cmd.AddCommand(work.NewCmd(clusteradmFlags, streams))
