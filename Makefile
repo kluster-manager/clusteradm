@@ -46,8 +46,8 @@ deps:
 
 .PHONY: build
 build: 
-	rm -f ${GOPATH}/bin/clusteradm
-	go install $(GO_LD_FLAGS) ./cmd/clusteradm/clusteradm.go
+	rm -f bin/clusteradm
+	CGO_ENABLED=0 go build -ldflags="-s -w" -o bin/clusteradm cmd/clusteradm/clusteradm.go
 
 .PHONY: 
 build-bin:
@@ -122,3 +122,15 @@ vendor:
 .PHONY: copy-crd
 copy-crd: vendor
 	bash -x build/copy-crds.sh
+
+IMAGE_REGISTRY?=ghcr.io/kluster-manager
+IMAGE_TAG?=latest
+export IMAGE_NAME?=$(IMAGE_REGISTRY)/clusteradm:$(IMAGE_TAG)
+
+image:
+	docker build -f Dockerfile -t $(IMAGE_NAME) .
+.PHONY: image
+
+push:
+	docker push $(IMAGE_NAME)
+.PHONY: push
