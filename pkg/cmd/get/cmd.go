@@ -6,6 +6,7 @@ import (
 	"k8s.io/cli-runtime/pkg/genericiooptions"
 	"open-cluster-management.io/clusteradm/pkg/cmd/get/addon"
 	"open-cluster-management.io/clusteradm/pkg/cmd/get/cluster"
+	"open-cluster-management.io/clusteradm/pkg/cmd/get/clusterinfo"
 	"open-cluster-management.io/clusteradm/pkg/cmd/get/clusterset"
 	"open-cluster-management.io/clusteradm/pkg/cmd/get/hubconfig"
 	"open-cluster-management.io/clusteradm/pkg/cmd/get/hubinfo"
@@ -27,6 +28,7 @@ func NewCmd(clusteradmFlags *genericclioptionsclusteradm.ClusteradmFlags, stream
 	cmd.AddCommand(addon.NewCmd(clusteradmFlags, streams))
 	cmd.AddCommand(cluster.NewCmd(clusteradmFlags, streams))
 	cmd.AddCommand(clusterset.NewCmd(clusteradmFlags, streams))
+	cmd.AddCommand(clusterinfo.NewCmd(clusteradmFlags, streams))
 	cmd.AddCommand(hubconfig.NewCmd(clusteradmFlags, streams))
 	cmd.AddCommand(hubinfo.NewCmd(clusteradmFlags, streams))
 	cmd.AddCommand(klusterletinfo.NewCmd(clusteradmFlags, streams))
