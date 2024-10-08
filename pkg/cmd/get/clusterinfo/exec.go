@@ -89,12 +89,6 @@ func (o *Options) run() error {
 	}
 	if capiInfo != nil {
 		md["capi"] = capiInfo
-	} else {
-		md["capi"] = map[string]string{
-			"provider":    "",
-			"namespace":   "",
-			"clusterName": "",
-		}
 	}
 
 	data, err := yaml.Marshal(map[string]any{
