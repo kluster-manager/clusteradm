@@ -45,11 +45,11 @@ deps:
 	@$(INSTALL_DEPENDENCIES)
 
 .PHONY: build
-build: 
+build:
 	rm -f bin/clusteradm
 	CGO_ENABLED=0 go build -ldflags="-s -w" -o bin/clusteradm cmd/clusteradm/clusteradm.go
 
-.PHONY: 
+.PHONY:
 build-bin:
 	@rm -rf bin
 	@mkdir -p bin
@@ -80,7 +80,7 @@ ifeq (, $(shell which /tmp/krew-$(GOOS)\_$(GOARCH)))
 		KREW=krew-$(GOOS)\_$(GOARCH); \
 		curl -fsSLO "https://github.com/kubernetes-sigs/krew/releases/latest/download/$$KREW.tar.gz" && \
 		tar zxvf $$KREW.tar.gz \
-	) 
+	)
 endif
 
 .PHONY: install
@@ -104,7 +104,7 @@ test: deps ensure-kubebuilder-tools
 	@build/run-unit-tests.sh
 
 .PHONY: clean-test
-clean-test: 
+clean-test:
 	-rm -r ./test/unit/coverage
 	-rm -r ./test/unit/tmp
 	-rm -r ./test/out
@@ -125,10 +125,11 @@ copy-crd: vendor
 
 IMAGE_REGISTRY?=ghcr.io/kluster-manager
 IMAGE_TAG?=latest
-export IMAGE_NAME?=$(IMAGE_REGISTRY)/clusteradm:$(IMAGE_TAG)
+IMAGE_NAME?=$(IMAGE_REGISTRY)/clusteradm:$(IMAGE_TAG)
+IMAGE_BUILD_EXTRA_FLAGS?=
 
 image:
-	docker build -f Dockerfile -t $(IMAGE_NAME) .
+	docker build $(IMAGE_BUILD_EXTRA_FLAGS) -f Dockerfile -t $(IMAGE_NAME) .
 .PHONY: image
 
 push:
