@@ -1,17 +1,13 @@
 # Copyright Contributors to the Open Cluster Management project
-FROM golang:1.22 AS builder
+FROM golang:1.23 AS builder
 
-ARG OS=linux
-ARG ARCH=amd64
 ENV DIRPATH /go/src/open-cluster-management.io/clusteradm
 WORKDIR ${DIRPATH}
 
 COPY . .
 
 # RUN apt-get update && apt-get install net-tools && make vendor
-RUN GOOS=${OS} \
-    GOARCH=${ARCH} \
-    make build
+RUN make build
 
 
 FROM registry.access.redhat.com/ubi8/ubi-minimal:latest
