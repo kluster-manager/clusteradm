@@ -30,7 +30,7 @@ require (
 	k8s.io/klog/v2 v2.130.1
 	k8s.io/kubectl v0.32.2
 	k8s.io/utils v0.0.0-20241104100929-3ea5e8cea738
-	kmodules.xyz/client-go v0.32.6
+	kmodules.xyz/client-go v0.32.8
 	open-cluster-management.io/api v1.0.0
 	open-cluster-management.io/cluster-proxy v0.7.0
 	open-cluster-management.io/managed-serviceaccount v0.8.0
