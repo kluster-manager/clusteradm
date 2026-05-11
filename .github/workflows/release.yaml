@@ -18,6 +18,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+          fetch-tags: true
       - name: Set up Go
         uses: actions/setup-go@v3
         with:
@@ -29,7 +32,7 @@ jobs:
         run: |
           make build-bin
       - name: Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@26994186c0ac3ef5cae75ac16aa32e8153525f77 # v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
